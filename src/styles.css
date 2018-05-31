@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+form.emp-Form{
+    background-color:lightslategray;
+    padding: 10px;
+    border: 4px
+    }
+div.validation-error{
+    color: red;
+    text-align: center;
+}

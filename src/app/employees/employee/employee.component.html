@@ -1,0 +1,43 @@
+<form #employeeForm='ngForm' (submit)='OnSubmit(employeeForm)' class="emp-Form">
+  <input type="hidden" name="$key" #$key='ngModel' [(ngModel)]='employeeservice.selectedEmployee.$key'>
+
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label for="">Name</label>
+      <input type="text" name="name" ngModel placeholder="Name" id='name' required minlength="3" maxlength="10" #name='ngModel'  [(ngModel)]='employeeservice.selectedEmployee.name'
+        class="form-control">
+      <div class="validation-error" *ngIf='!name.valid && name.touched'>
+        <div [hidden] *ngIf="name.errors.required">First Name is not valid</div>
+        <div [hidden] *ngIf="!name.errors.minLength">First Name should be more than 3 character</div>
+        
+      </div>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="">Position</label>
+      <input type="text" name="position" #Position='ngModel' placeholder="Position" required [(ngModel)]='employeeservice.selectedEmployee.position'
+        class="form-control">
+    </div>
+
+  </div>
+
+  <div class="form-group">
+    <label for="">Office</label>
+    <input type="text" name="office" #Office='ngModel' placeholder="Office" [(ngModel)]='employeeservice.selectedEmployee.office'
+      class="form-control">
+  </div>
+  <div class="form-group">
+    <label for="">Salary</label>
+    <input type="number" name="salary" #Salary='ngModel' placeholder="Salary" [(ngModel)]='employeeservice.selectedEmployee.salary'
+      class="form-control">
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-default" [disabled]='!employeeForm.valid' >
+      <i class="fa fa-floppy-o"></i>Save</button>
+    <button type="button" class="btn btn-primary" *ngIf="employeeservice.selectedEmployee.$key!=''" (click)='DeleteEmployee(employeeForm)'>
+      <i class="fa fa-trash-o"></i>Delete</button>
+    <button type="button" class="btn btn-primary " (click)='ResetForm(employeeForm)'>
+      <i class="fa fa-repeat-o"></i>Reset</button>
+  </div>
+</form>
+{{employeeservice.selectedEmployee.value}}
